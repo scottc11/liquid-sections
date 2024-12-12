@@ -1,0 +1,1 @@
+### Just a collection of custom and pre-made Shopify liquid sections / blocks etc.

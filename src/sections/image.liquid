@@ -1,0 +1,103 @@
+{% schema %}
+{
+    "name": "Image Section",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "select",
+            "id": "object_fit",
+            "label": "Object Fit",
+            "options": [
+                { "value": "contain", "label": "Contain" },
+                { "value": "cover", "label": "Cover" },
+                { "value": "fill", "label": "Fill" },
+                { "value": "scale-down", "label": "Scale Down" },
+                { "value": "none", "label": "None" }
+            ],
+            "default": "contain"
+        },
+        {
+            "type": "text",
+            "id": "image_height",
+            "label": "Image Height",
+            "default": "auto"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:sections.all.colors.label",
+            "default": "scheme-1"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "Top Padding",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "default": 20
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "Bottom Padding",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "default": 20
+        },
+    ],
+    "presets": [
+        {
+            "name": "Image Section"
+        }
+    ]
+}
+{% endschema %}
+
+<div class="image-section color-{{ section.settings.color_scheme }}">
+    {% if section.settings.image %}
+        <img src="{{ section.settings.image | img_url: 'master' }}" alt="Image">
+    {% else %}
+        <p>Please select an image in the section settings.</p>
+    {% endif %}
+</div>
+
+<style>
+.image-section {
+    text-align: center;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.image-section img {
+    width: 100%;
+    object-fit: {{ section.settings.object_fit }};
+    height: {{ section.settings.image_height }};
+}
+
+@media (max-width: 767px) {
+    .image-section {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+</style>
+
+
+
+
+<img src="//ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=1946" alt=""
+    srcset="//ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=246 246w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=493 493w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=600 600w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=713 713w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=823 823w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=990 990w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=1100 1100w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=1206 1206w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=1346 1346w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=1426 1426w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=1646 1646w, //ok200.ca/cdn/shop/files/degree-top-shadow.png?v=1726712276&amp;width=1946 1946w"
+    width="1946" height="1219" class="image-magnify-lightbox"
+    sizes="(min-width: 1200px) 605px, (min-width: 990px) calc(55.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw / 1 - 4rem)">
