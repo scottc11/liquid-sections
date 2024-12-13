@@ -64,6 +64,13 @@
             id="ImageWithText--{{ section.id }}"
             class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
           >
+            <div>
+                {%- if section.settings.heading_image != blank -%}
+                    <div class="heading-image--custom">
+                        <img src="{{ section.settings.heading_image | img_url: 'master' }}" alt="Heading Image">
+                    </div>
+                {%- endif -%}
+            </div>
             {%- for block in section.blocks -%}
               {% case block.type %}
                 {%- when 'heading' -%}
@@ -107,9 +114,30 @@
   </div>
 </div>
 
+<style>
+
+.image-with-text__media--contain {
+  border: none;
+}
+
+.image-with-text__media--contain img {
+  object-fit: contain;
+}
+
+.heading-image--custom {
+    margin-bottom: 20px;
+}
+
+.heading-image--custom img {
+    width: 100%;
+    object-fit: contain;
+    height: auto;
+}
+</style>
+
 {% schema %}
 {
-  "name": "t:sections.image-with-text.name",
+  "name": "Image with text (custom)",
   "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
@@ -142,7 +170,7 @@
         },
         {
             "value": "contain",
-            "label": "t:sections.image-with-text.settings.height.options__5.label"
+            "label": "Contain"
         }
       ],
       "default": "adapt",
@@ -253,6 +281,15 @@
       "id": "color_scheme",
       "label": "t:sections.multirow.settings.container_color_scheme.label",
       "default": "scheme-1"
+    },
+    {
+        "type": "header",
+        "content": "custom"
+    },
+    {
+        "type": "image_picker",
+        "id": "heading_image",
+        "label": "Heading Image"
     },
     {
       "type": "header",
