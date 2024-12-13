@@ -1,0 +1,44 @@
+{% schema %}
+{
+    "name": "Divider",
+    "settings": [
+        {
+            "type": "color",
+            "id": "border_color",
+            "label": "Border Color",
+            "default": "#000000"
+        },
+        {
+            "type": "range",
+            "id": "height",
+            "label": "Height",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "unit": "px",
+            "default": 1
+        },
+        {
+            "type": "range",
+            "id": "border_radius",
+            "label": "Border Radius",
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "px",
+            "default": 0
+        }
+    ],
+    "presets": [
+        {
+            "name": "Divider"
+        }
+    ]
+}
+{% endschema %}
+
+{% assign border_color = section.settings.border_color | default: '#000000' %}
+{% assign height = section.settings.height | default: '1px' %}
+{% assign border_radius = section.settings.border_radius | default: '0px' %}
+
+<div style="border-top: {{ height }} solid {{ border_color }}; border-radius: {{ border_radius }}; display: block;"></div>
